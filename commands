@@ -1,0 +1,5 @@
+react-native doctor
+create-react-native-app
+npm start
+To start simulator---------npm run android
+after navigation commands--npx react-native run-android
