@@ -1,0 +1,84 @@
+import react from "react";
+import React, {Component} from 'react';
+import {StyleSheet, Text, View,Button,TextInput,ImageBackground,Platform} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import CalendarPicker from "react-native-calendar-picker";
+import AnalogClock from 'react-native-clock-analog';
+import moment from 'moment';
+
+
+export default class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      selectedStartDate: null,
+    };
+    this.onDateChange = this.onDateChange.bind(this);
+  }
+  onDateChange(date){
+    console.log(date);
+    this.setState({
+      selectedStartDate: date,
+    });
+  }
+  render(){
+    const {selectedStartDate} = this.state;
+    const startDate = selectedStartDate ? selectedStartDate.toString(): '';
+    return(
+      
+      <View style={styles.container}>
+        
+        <CalendarPicker onDateChange={this.onDateChange} />
+       <View>
+<Text>SELECTED DATE:----{moment(startDate).format('DD/MM/YYYY')}
+
+</Text>
+       </View>
+       <View style={styles.container2}>
+     
+        <AnalogClock
+          colorClock="white"
+          colorNumber="#000000"
+          colorCenter="#00BCD4"
+          colorHour="#FF8F00"
+          colorMinutes="#FFC400"
+          autostart={true}
+          showSeconds
+        />
+    
+    </View>
+    
+        </View>
+        
+        
+    );
+  }
+  
+}
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'White',
+    marginTop:20,
+    marginBottom:100,
+    padding:100,
+  },
+  container2: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+    marginTop:100,
+    marginBottom:600,
+    backgroundColor:'white'
+  },
+});
+
+
+
+
+
+
